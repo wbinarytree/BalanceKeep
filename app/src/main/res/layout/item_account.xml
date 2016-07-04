@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/image_card"
             android:scaleType="centerCrop"
+            android:background="@color/colorPrimary"
             android:src="@drawable/silk_card"/>
         <TextView
             android:layout_width="match_parent"
