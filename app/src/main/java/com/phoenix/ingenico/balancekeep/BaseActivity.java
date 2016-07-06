@@ -3,7 +3,11 @@ package com.phoenix.ingenico.balancekeep;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -14,12 +18,13 @@ import android.widget.FrameLayout;
 
 public class BaseActivity extends AppCompatActivity {
     private FrameLayout contentView = null;
+    private DrawerLayout drawer;
     public FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(R.layout.activity_base_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,6 +37,16 @@ public class BaseActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Initial Drawer
+        drawer = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new MyOnNavigationItemSelectedListener());
     }
 
     @Override
@@ -59,14 +74,43 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
-        if ( R.layout.activity_base == layoutResID) {
-            super.setContentView(R.layout.activity_base);
+        if (R.layout.activity_base_drawer == layoutResID) {
+            super.setContentView(R.layout.activity_base_drawer);
             contentView = (FrameLayout) findViewById(R.id.layout_content);
             contentView.removeAllViews();
 
-        } else if (layoutResID != R.layout.activity_base) {
+        } else {
             View addView = LayoutInflater.from(this).inflate(layoutResID, null);
             contentView.addView(addView);
         }
     }
+
+    //Navigation Drawer Menu Selected Listener
+    class MyOnNavigationItemSelectedListener implements NavigationView.OnNavigationItemSelectedListener {
+
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            switch (id) {
+                case R.id.nav_camera:
+                    break;
+                case R.id.nav_gallery:
+                    break;
+                case R.id.nav_manage:
+                    break;
+                /*
+                * ...else menu
+                *
+                * */
+
+                default:
+
+            }
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+    }
+
 }
+

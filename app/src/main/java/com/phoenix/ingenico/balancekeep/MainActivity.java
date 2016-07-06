@@ -1,5 +1,6 @@
 package com.phoenix.ingenico.balancekeep;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ public class MainActivity extends BaseActivity {
     private String myDataset[] = {"APPLE", "BANANA", "ORANGE", "PEAR", "STRAWBERRY"};
     List<String> datalist = new ArrayList(Arrays.asList(myDataset));
     int i = 0;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
