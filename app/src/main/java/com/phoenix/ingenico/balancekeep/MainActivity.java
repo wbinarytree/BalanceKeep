@@ -20,19 +20,19 @@ public class MainActivity extends BaseActivity {
     private GridLayoutManager mGridlayoutManager;
     private RecyclerView.Adapter mAdapter;
     private String myDataset[] = {"APPLE", "BANANA", "ORANGE", "PEAR", "STRAWBERRY"};
-    List<String> datalist = new ArrayList(Arrays.asList(myDataset));
+    List<Account> datalist;
     int i = 0;
     private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_main);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
         mGridlayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyAdapter(datalist);
+        mAdapter = new AccountRecyclerAdapter(datalist);
         mRecyclerView.setAdapter(mAdapter);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void run() {
                         int position = datalist.size();
-                        datalist.add(position, "TEST" + i);
+                        //datalist.add(position, "TEST" + i);
                         i++;
                         mAdapter.notifyItemInserted(position);
                         mRecyclerView.scrollToPosition(position);

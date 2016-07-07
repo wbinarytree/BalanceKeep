@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Created by yawang on 04/07/2016.
  */
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String> mDataset;
+public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountRecyclerAdapter.ViewHolder> {
+    private List<Account> mAccountData;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -33,14 +33,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<String> myDataset) {
-        mDataset = myDataset;
+    public AccountRecyclerAdapter(List<Account> myDataset) {
+        mAccountData = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public AccountRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_account, parent, false);
@@ -54,13 +54,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset.get(position));
+        holder.mTextView.setText(mAccountData.get(position).getName());
+        holder.mImageView.setImageResource(mAccountData.get(position).getImg());
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mAccountData.size();
     }
 }
