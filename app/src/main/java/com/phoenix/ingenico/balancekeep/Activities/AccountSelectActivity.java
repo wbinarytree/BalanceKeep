@@ -1,23 +1,26 @@
-package com.phoenix.ingenico.balancekeep;
+package com.phoenix.ingenico.balancekeep.Activities;
 
-import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
+
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
+import android.view.View;
 
-public class BaseActivity extends AppCompatActivity {
-    private FrameLayout contentView = null;
+import com.phoenix.ingenico.balancekeep.Fragments.MainFragment;
+import com.phoenix.ingenico.balancekeep.R;
+
+public class AccountSelectActivity extends AppCompatActivity {
+
+    public static final String TAG = "MainActivity";
     private DrawerLayout drawer;
     public FloatingActionButton fab;
 
@@ -25,6 +28,14 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_drawer);
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            MainFragment fragment = new MainFragment();
+            transaction.replace(R.id.layout_content, fragment);
+            transaction.commit();
+        }
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,7 +67,6 @@ public class BaseActivity extends AppCompatActivity {
         return true;
     }
 
-    //override this method to binding listener menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -70,19 +80,6 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void setContentView(@LayoutRes int layoutResID) {
-        if (R.layout.activity_base_drawer == layoutResID) {
-            super.setContentView(R.layout.activity_base_drawer);
-            contentView = (FrameLayout) findViewById(R.id.layout_content);
-            contentView.removeAllViews();
-
-        } else {
-            View addView = LayoutInflater.from(this).inflate(layoutResID, null);
-            contentView.addView(addView);
-        }
     }
 
     //Navigation Drawer Menu Selected Listener
@@ -113,4 +110,3 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 }
-

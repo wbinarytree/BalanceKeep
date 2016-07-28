@@ -1,4 +1,4 @@
-package com.phoenix.ingenico.balancekeep;
+package com.phoenix.ingenico.balancekeep.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+import com.phoenix.ingenico.balancekeep.Utils.Account;
+import com.phoenix.ingenico.balancekeep.Activities.AccountRecyclerAdapter;
+import com.phoenix.ingenico.balancekeep.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.phoenix.ingenico.balancekeep;
+package com.phoenix.ingenico.balancekeep.idle;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,8 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.phoenix.ingenico.balancekeep.Activities.AccountRecyclerAdapter;
+import com.phoenix.ingenico.balancekeep.R;
+import com.phoenix.ingenico.balancekeep.Utils.Account;
+import com.phoenix.ingenico.balancekeep.Utils.BaseActivity;
+
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
